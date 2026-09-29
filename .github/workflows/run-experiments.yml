@@ -1,0 +1,27 @@
+name: run-experiments
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 0 * * *"   # daily, just past midnight UTC
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run every experiment
+        run: |
+          shopt -s nullglob
+          fail=0
+          for f in experiments/*/main.py; do
+            echo "::group::${f}"
+            timeout 30 python3 "$f" || { echo "FAILED: $f"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
