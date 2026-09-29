@@ -1,44 +1,54 @@
-# daily-experiments
+# Experiment
 
-> Small, runnable code experiments — committed (ideally) every day.
+> A daily-commit lab: small runnable code experiments **and** a reflection
+> journal + skills about how I use LLMs.
 
-A low-friction repo to keep a *real* GitHub contribution streak alive. Each day
-I drop **one small, self-contained, runnable experiment** — an algorithm, a
-pygame demo, an AI snippet, a math toy. Even a 10-line script counts. The goal
-is habit + a searchable playground, not heroic projects.
+Two halves, one habit. Every day I make at least one meaningful commit: either
+a code experiment, a reflection note, or a skill. The goal is a real GitHub
+streak plus a searchable personal knowledge base — not heroic projects.
 
-## How to add today's experiment
+## 1. Code experiments
 
 ```bash
 python3 new_exp.py "Bouncing ball with pygame"
 ```
 
-This creates `experiments/YYYY-MM-DD_slug/` with a `main.py` template +
-`README.md`, and appends a row to [INDEX.md](INDEX.md). Then:
+Creates `experiments/YYYY-MM-DD_slug/` with a runnable `main.py` + `README.md`,
+and appends to [INDEX.md](INDEX.md).
+
+## 2. Reflection notes & skills
 
 ```bash
-git add .
-git commit -m "exp: bouncing ball with pygame"
+python3 new_note.py "Why I prefer WorkBuddy for writing"
 ```
+
+Creates `reflect/journal/YYYY-MM-DD_slug.md` and appends to the journal index
+in [reflect/README.md](reflect/README.md). Author reusable LLM / agent skills
+under [reflect/skills/](reflect/skills/) (start from its `_template/`).
 
 ## Layout
 
 ```
-daily-experiments/
-├── new_exp.py          # scaffold helper
-├── INDEX.md            # auto-updated table of experiments
-└── experiments/
-    └── YYYY-MM-DD_slug/
-        ├── main.py     # runnable code
-        └── README.md   # what you learned
+Experiment/
+├── new_exp.py           # scaffold a code experiment
+├── new_note.py          # scaffold a reflection note
+├── INDEX.md             # table of code experiments
+├── experiments/
+│   └── YYYY-MM-DD_slug/{main.py, README.md}
+└── reflect/
+    ├── README.md        # journal index
+    ├── journal/         # dated reflection notes
+    └── skills/          # reusable LLM/agent skills (SKILL.md)
 ```
 
 ## Rules I keep (loose)
 
 - One commit per day minimum; more if inspired.
-- Zero or few dependencies preferred so things stay runnable anywhere.
-- Every `main.py` should run with `python3 main.py` (or say what it needs).
+- Code experiments: zero/few deps so they run anywhere (CI runs them).
+- Reflection notes / skills: plain markdown, no build needed.
+- Every `experiments/*/main.py` should run with `python3 main.py`.
 
 ## Index
 
-See [INDEX.md](INDEX.md).
+- Code experiments: [INDEX.md](INDEX.md)
+- Reflection journal: [reflect/README.md](reflect/README.md)
